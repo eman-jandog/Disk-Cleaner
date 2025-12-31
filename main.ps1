@@ -1,5 +1,5 @@
 # Environment variables
-$DISKPART_CONFIG = "./cleanDisk.conf"
+$DISKPART_CONFIG = "./diskpart.conf"
 
 # Check for administrative privileges
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
