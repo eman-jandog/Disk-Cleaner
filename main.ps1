@@ -1,5 +1,5 @@
 # Environment variables
-$DISKPART_CONFIG = "./cleanDisk.conf"
+$DISKPART_CONFIG = "./diskpart.conf"
 
 # Check for administrative privileges
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -33,6 +33,9 @@ while (-not $added) {
         # Remove process related with the drive - safe to dismount even connected
         $driveLetter = "Z:" 
         Get-WmiObject -Query "SELECT * FROM Win32_Volume WHERE DriveLetter = '$driveLetter'" | ForEach-Object { $_.Dismount($false, $false) }
+
+        # Record Disk 
+        Echo $added >> C:\diskadded.txt
         
         # Reset values
         $added = $null
